@@ -10,8 +10,35 @@
 \setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
 \setCJKmonofont{FandolFang-Regular.otf}
 
-\usepackage{pgfplots}
-\usetikzlibrary{shapes}
+% Predefined TikZ tree styles
+\tikzset{
+  treestyles/.style={
+    m/.style={circle, draw, minimum size=4mm,inner sep=0pt},
+    r/.style={color=red,text=black,thin,edge from parent/.style={red,thick,draw}},
+    n/.style={black,thin,edge from parent/.style={black,thin,draw}}
+  }
+}
+
+% Predefined TikZ style for full-frame binary trees
+\tikzset{
+  bintree/.style={
+    overlay,
+    level distance=1.4cm,
+    level 1/.style={sibling distance=5.6cm},
+    level 2/.style={sibling distance=2.8cm},
+    level 3/.style={sibling distance=1.4cm},
+    treestyles
+  }
+}
+
+% Predefined TikZ style for iniline mini(mal) trees
+\tikzset{
+  mintree/.style={
+    level distance=1.4cm,
+    level 1/.style={sibling distance=1.4cm},
+    treestyles
+  }
+}
 
 % left-aligned description lists
 \defbeamertemplate{description item}{align left}{\insertdescriptionitem\hfill}
@@ -101,11 +128,7 @@ Tracing Schemes for Stateless Receivers''. \textit{Annual International Cryptolo
   \vspace{1.7em}
   \begin{center}
     \only<1>{
-    \begin{tikzpicture}[overlay,level distance=1.4cm,
-  level 1/.style={sibling distance=5.6cm},
-  level 2/.style={sibling distance=2.8cm},
-  level 3/.style={sibling distance=1.4cm}]
-      \tikzstyle{m}=[circle, draw, minimum size=4mm,inner sep=0pt]
+    \begin{tikzpicture}[bintree]
       \node [m] {\tiny1}
         child {node [m] {\tiny2}
           child {node [m] {\tiny4}
@@ -129,11 +152,7 @@ Tracing Schemes for Stateless Receivers''. \textit{Annual International Cryptolo
         };
     \end{tikzpicture}
     }\only<2>{
-    \begin{tikzpicture}[overlay,level distance=1.4cm,
-  level 1/.style={sibling distance=5.6cm},
-  level 2/.style={sibling distance=2.8cm},
-  level 3/.style={sibling distance=1.4cm}]
-      \tikzstyle{m}=[circle, draw, minimum size=4mm,inner sep=0pt]
+    \begin{tikzpicture}[bintree]
       \node [m,fill=example,text=white] (a) {\tiny1}
         child {node [m] {\tiny2}
           child {node [m] {\tiny4}
@@ -163,11 +182,7 @@ Tracing Schemes for Stateless Receivers''. \textit{Annual International Cryptolo
       \draw[dashed,example,thick] plot[smooth cycle] coordinates {(A) (B) (C)};
     \end{tikzpicture}
     }\only<3>{
-    \begin{tikzpicture}[overlay,level distance=1.4cm,
-  level 1/.style={sibling distance=5.6cm},
-  level 2/.style={sibling distance=2.8cm},
-  level 3/.style={sibling distance=1.4cm}]
-      \tikzstyle{m}=[circle, draw, minimum size=4mm,inner sep=0pt]
+    \begin{tikzpicture}[bintree]
       \node [m] {\tiny1}
         child {node [m,fill=example,text=white] (a) {\tiny2}
           child {node [m] {\tiny4}
@@ -197,11 +212,7 @@ Tracing Schemes for Stateless Receivers''. \textit{Annual International Cryptolo
       \draw[dashed,example,thick] plot[smooth cycle] coordinates {(A) (B) (C)};
     \end{tikzpicture}
     }\only<4>{
-    \begin{tikzpicture}[overlay,level distance=1.4cm,
-  level 1/.style={sibling distance=5.6cm},
-  level 2/.style={sibling distance=2.8cm},
-  level 3/.style={sibling distance=1.4cm}]
-      \tikzstyle{m}=[circle, draw, minimum size=4mm,inner sep=0pt]
+    \begin{tikzpicture}[bintree]
       \node [m] {\tiny1}
         child {node [m] {\tiny2}
           child {node [m] {\tiny4}
@@ -231,11 +242,7 @@ Tracing Schemes for Stateless Receivers''. \textit{Annual International Cryptolo
       \draw[dashed,example,thick] plot[smooth cycle] coordinates {(A) (B) (C)};
     \end{tikzpicture}
     }\only<5>{
-    \begin{tikzpicture}[overlay,level distance=1.4cm,
-  level 1/.style={sibling distance=5.6cm},
-  level 2/.style={sibling distance=2.8cm},
-  level 3/.style={sibling distance=1.4cm}]
-      \tikzstyle{m}=[circle, draw, minimum size=4mm,inner sep=0pt]
+    \begin{tikzpicture}[bintree]
       \node [m] {\tiny1}
         child {node [m] {\tiny2}
           child {node [m] {\tiny4}
@@ -274,14 +281,7 @@ Tracing Schemes for Stateless Receivers''. \textit{Annual International Cryptolo
   }
   \begin{center}
     \only<1>{
-    \begin{tikzpicture}[overlay,level distance=1.4cm,
-  level 1/.style={sibling distance=5.6cm},
-  level 2/.style={sibling distance=2.8cm},
-  level 3/.style={sibling distance=1.4cm}]
-      \tikzstyle{m}=[circle, draw, minimum size=4mm,inner sep=0pt]
-      \tikzstyle{r}=[color=red,text=black,thin,edge from parent/.style={red,thick,draw}]
-      \tikzstyle{n}=[black,thin,edge from parent/.style={black,thin,draw}]
-
+    \begin{tikzpicture}[bintree]
       \node [m,color=red,text=black] {\tiny1}
         child[r] {node [m] {\tiny2}
           child[r] {node [m] {\tiny4}
@@ -305,14 +305,7 @@ Tracing Schemes for Stateless Receivers''. \textit{Annual International Cryptolo
         };
     \end{tikzpicture}
     }\only<2>{
-    \begin{tikzpicture}[overlay,level distance=1.4cm,
-  level 1/.style={sibling distance=5.6cm},
-  level 2/.style={sibling distance=2.8cm},
-  level 3/.style={sibling distance=1.4cm}]
-      \tikzstyle{m}=[circle, draw, minimum size=4mm,inner sep=0pt]
-      \tikzstyle{r}=[color=red,text=black,thin,edge from parent/.style={red,thick,draw}]
-      \tikzstyle{n}=[black,thin,edge from parent/.style={black,thin,draw}]
-
+    \begin{tikzpicture}[bintree]
       \node [m,color=red,text=black] {\tiny1}
         child[r] {node [m] {\tiny2}
           child[r] {node [m] {\tiny4}
@@ -403,13 +396,8 @@ The max. cover size for $n$ receivers in total of which $r$ are revoked
       \begin{minipage}{.4\textwidth}
         $\mathbf{r=1}$:\\
         \begin{center}
-        \begin{tikzpicture}[level distance=1.4cm,
-        level 1/.style={sibling distance=1.4cm}]
-            \tikzstyle{m}=[circle,draw,fill=white,minimum size=4mm,inner sep=0pt]
-            \tikzstyle{r}=[color=red,text=black,thin,edge from parent/.style={red,thick,draw}]
-            \tikzstyle{n}=[black,thin,edge from parent/.style={black,thin,draw}]
-
-            \node [m,color=red,text=black] {\tiny1}
+        \begin{tikzpicture}[mintree]
+            \node [m,color=red,fill=red,text=black] {\tiny1}
               child[r] {node [rectangle,draw,fill=red] {$u_1$}}
               child[n] {node [rectangle,draw,fill=example] (a) {$u_2$}};
 
@@ -421,13 +409,8 @@ The max. cover size for $n$ receivers in total of which $r$ are revoked
       \begin{minipage}{.4\textwidth}
         $\mathbf{r=2}$:\\
         \begin{center}
-        \begin{tikzpicture}[level distance=1.4cm,
-        level 1/.style={sibling distance=1.4cm}]
-            \tikzstyle{m}=[circle,draw,fill=white,minimum size=4mm,inner sep=0pt]
-            \tikzstyle{r}=[color=red,text=black,thin,edge from parent/.style={red,thick,draw}]
-            \tikzstyle{n}=[black,thin,edge from parent/.style={black,thin,draw}]
-
-            \node [m,color=red,text=black] {\tiny1}
+        \begin{tikzpicture}[mintree]
+            \node [m,color=red,fill=red,text=black] {\tiny1}
               child[r] {node [rectangle,draw,fill=red] {$u_1$}}
               child[r] {node [rectangle,draw,fill=red] {$u_2$}};
         \end{tikzpicture}\vspace{0.3cm}\\
